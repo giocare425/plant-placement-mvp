@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>観葉植物お試し配置サービス MVP v2</title>
+  <title>観葉植物お試し配置サービス MVP</title>
   <style>
     :root {
       --green: #2f6f3e;
@@ -16,7 +16,9 @@
       --shadow: 0 8px 24px rgba(31, 42, 36, 0.08);
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -26,12 +28,9 @@
     }
 
     header {
-      padding: 18px 16px 12px;
+      padding: 28px 24px 18px;
       background: linear-gradient(120deg, #ffffff, #edf6ee);
       border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 10;
     }
 
     .header-inner {
@@ -40,53 +39,54 @@
     }
 
     h1 {
-      margin: 0 0 4px;
-      font-size: clamp(22px, 4vw, 36px);
+      margin: 0 0 8px;
+      font-size: clamp(26px, 4vw, 42px);
       letter-spacing: 0.02em;
     }
 
     .lead {
       margin: 0;
       color: var(--green);
-      font-size: clamp(13px, 2vw, 18px);
+      font-size: clamp(15px, 2vw, 20px);
       font-weight: 700;
     }
 
     main {
       max-width: 1180px;
       margin: 0 auto;
-      padding: 14px 12px 32px;
+      padding: 22px 16px 40px;
     }
 
     .steps {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 14px;
+      gap: 14px;
+      margin-bottom: 18px;
     }
 
     .step {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 10px;
+      border-radius: 18px;
+      padding: 14px;
       box-shadow: var(--shadow);
+      min-height: 94px;
     }
 
     .step-title {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       font-weight: 800;
-      font-size: 15px;
-      margin-bottom: 6px;
+      font-size: 17px;
+      margin-bottom: 10px;
     }
 
     .num {
       display: inline-grid;
       place-items: center;
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
       background: var(--green);
       color: #fff;
@@ -96,31 +96,31 @@
     .step p {
       margin: 0;
       color: var(--muted);
-      font-size: 12px;
-      line-height: 1.5;
+      font-size: 13px;
+      line-height: 1.6;
     }
 
     .workspace {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 14px;
+      grid-template-columns: 1.1fr 0.85fr;
+      gap: 18px;
     }
 
     .card {
       background: var(--card);
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 22px;
       box-shadow: var(--shadow);
-      padding: 14px;
+      padding: 18px;
     }
 
     .stage {
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 3;
-      background: #eeeee9;
+      background: #f2f1ec;
       border: 1px dashed #b9c1ba;
-      border-radius: 16px;
+      border-radius: 18px;
       overflow: hidden;
       display: grid;
       place-items: center;
@@ -141,66 +141,76 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
-      object-position: center center;
+      object-fit: cover;
       display: none;
-      transform: scale(1);
-      transform-origin: center center;
     }
 
     #plantLayer {
       position: absolute;
       left: 55%;
-      top: 50%;
+      top: 42%;
       width: 28%;
       transform: translate(-50%, -50%);
       cursor: grab;
       display: none;
       filter: drop-shadow(12px 18px 16px rgba(0,0,0,0.24));
-      z-index: 3;
     }
 
-    #plantLayer:active { cursor: grabbing; }
+    #plantLayer:active {
+      cursor: grabbing;
+    }
 
     .toolbar {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 10px;
+      gap: 12px;
+      margin-top: 14px;
     }
 
     label {
       display: block;
-      font-size: 12px;
+      font-size: 13px;
       color: var(--muted);
-      margin-bottom: 5px;
-      font-weight: 800;
+      margin-bottom: 6px;
+      font-weight: 700;
     }
 
     input[type="file"],
     select,
-    input[type="range"] { width: 100%; }
+    input[type="range"] {
+      width: 100%;
+    }
 
     select,
     .upload-box {
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 10px;
+      padding: 12px;
       background: #fff;
+      font-size: 15px;
+    }
+
+    input[type="file"] {
       font-size: 14px;
     }
 
-    input[type="file"] { font-size: 13px; }
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(3, 46px);
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+    }
 
     button {
       border: 0;
       background: var(--green);
       color: #fff;
       border-radius: 12px;
-      padding: 11px 14px;
+      padding: 12px 16px;
       font-weight: 800;
       cursor: pointer;
-      font-size: 14px;
+      font-size: 15px;
     }
 
     button.secondary {
@@ -209,18 +219,25 @@
       border: 1px solid #cbd8ce;
     }
 
+    button.small {
+      padding: 10px;
+      width: 46px;
+      height: 42px;
+      font-size: 18px;
+    }
+
     .plant-grid {
       display: grid;
-      gap: 8px;
+      gap: 10px;
     }
 
     .plant-option {
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 8px;
+      padding: 10px;
       display: grid;
-      grid-template-columns: 42px 1fr auto;
-      gap: 8px;
+      grid-template-columns: 48px 1fr auto;
+      gap: 10px;
       align-items: center;
       cursor: pointer;
       background: #fff;
@@ -232,28 +249,23 @@
     }
 
     .thumb {
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
       border-radius: 10px;
       display: grid;
       place-items: center;
-      font-size: 28px;
+      font-size: 32px;
       background: #f5f7f3;
-      overflow: hidden;
     }
 
-    .plant-thumb-img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .plant-name {
+      font-weight: 800;
     }
-
-    .plant-name { font-weight: 800; font-size: 14px; }
 
     .plant-note {
-      font-size: 11px;
+      font-size: 12px;
       color: var(--muted);
-      margin-top: 2px;
+      margin-top: 3px;
     }
 
     .badge {
@@ -263,13 +275,13 @@
 
     .result {
       display: grid;
-      gap: 10px;
+      gap: 12px;
     }
 
     .score-box {
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 12px;
+      border-radius: 16px;
+      padding: 14px;
       background: #fff;
     }
 
@@ -278,17 +290,22 @@
       justify-content: space-between;
       gap: 12px;
       border-bottom: 1px solid #eef1ee;
-      padding: 8px 0;
-      font-size: 14px;
+      padding: 10px 0;
+      font-size: 15px;
     }
 
-    .score-row:last-child { border-bottom: 0; }
-    .score-row strong { color: var(--green); }
+    .score-row:last-child {
+      border-bottom: 0;
+    }
+
+    .score-row strong {
+      color: var(--green);
+    }
 
     .stars {
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       color: #f5a700;
-      font-size: 17px;
+      font-size: 20px;
       white-space: nowrap;
     }
 
@@ -296,57 +313,68 @@
       background: #f5fbf6;
       border: 1px solid #cfe3d2;
       color: #23462e;
-      border-radius: 14px;
-      padding: 12px;
-      line-height: 1.7;
-      font-size: 13px;
+      border-radius: 16px;
+      padding: 14px;
+      line-height: 1.8;
+      font-size: 14px;
+    }
+
+    .cta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
     }
 
     .summary {
-      margin-top: 14px;
+      margin-top: 18px;
       display: grid;
       grid-template-columns: 1.25fr 0.75fr;
-      gap: 14px;
+      gap: 18px;
     }
 
     .recommend-cards {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
 
     .mini-card {
       border: 1px solid var(--border);
-      border-radius: 14px;
+      border-radius: 16px;
       background: #fff;
-      padding: 10px;
+      padding: 12px;
       display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 8px;
+      grid-template-columns: 48px 1fr;
+      gap: 10px;
       align-items: center;
     }
 
     .mini-card strong {
       display: block;
-      font-size: 13px;
+      font-size: 14px;
     }
 
     .mini-card span {
       color: var(--green);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 800;
     }
 
-    .compact-help {
-      display: none;
-      margin-bottom: 10px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: #fff;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.6;
+    .light-list {
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .light-item {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eef1ee;
+      padding-bottom: 8px;
+    }
+
+    .light-item:last-child {
+      border-bottom: 0;
     }
 
     footer {
@@ -354,128 +382,52 @@
       margin: 0 auto;
       padding: 0 16px 28px;
       color: var(--muted);
-      font-size: 11px;
+      font-size: 12px;
     }
 
     @media (max-width: 920px) {
-      header {
-        position: static;
-        padding: 14px 14px 10px;
-      }
-
-      main {
-        padding: 10px 10px 24px;
-      }
-
-      .steps {
-        display: none;
-      }
-
-      .compact-help {
-        display: block;
-      }
-
+      .steps,
       .workspace,
-      .summary {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .card {
-        padding: 12px;
-        border-radius: 18px;
-      }
-
-      .stage {
-        aspect-ratio: 3 / 2;
-      }
-
-      .toolbar {
-        grid-template-columns: 1fr 1fr;
-        gap: 8px;
-      }
-
-      .plant-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .plant-option {
-        grid-template-columns: 36px 1fr;
-      }
-
-      .plant-option .badge {
-        display: none;
-      }
-
-      .thumb {
-        width: 36px;
-        height: 36px;
-        font-size: 24px;
-      }
-
-      .plant-note {
-        display: none;
-      }
-
+      .summary,
       .recommend-cards {
         grid-template-columns: 1fr;
       }
 
-      h1 {
-        font-size: 23px;
-      }
-
-      h2 {
-        font-size: 18px;
-        margin: 0 0 10px;
-      }
-    }
-
-    @media (max-width: 520px) {
       .toolbar {
         grid-template-columns: 1fr;
       }
 
-      .plant-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .score-row {
-        font-size: 13px;
+      h1 {
+        font-size: 28px;
       }
     }
   </style>
 </head>
-
 <body>
   <header>
     <div class="header-inner">
       <h1>観葉植物お試し配置サービス</h1>
-      <p class="lead">部屋に置いたイメージと、光環境との相性を確認できます</p>
+      <p class="lead">部屋に置いたイメージと、光環境との相性をその場で確認できます</p>
     </div>
   </header>
 
   <main>
-    <div class="compact-help">
-      使い方：部屋写真をアップ → 植物を選択 → 写真・植物サイズを調整 → 診断結果を確認
-    </div>
-
     <section class="steps">
       <div class="step">
-        <div class="step-title"><span class="num">1</span>部屋写真</div>
-        <p>写真全体表示・拡大表示を切り替えできます。</p>
+        <div class="step-title"><span class="num">1</span>部屋写真をアップロード</div>
+        <p>窓・床・家具が写る写真を使うと、配置イメージが分かりやすくなります。</p>
       </div>
       <div class="step">
-        <div class="step-title"><span class="num">2</span>植物選択</div>
-        <p>本番では透明背景PNG写真に差し替えます。</p>
+        <div class="step-title"><span class="num">2</span>植物を選ぶ</div>
+        <p>モンステラ、ケンチャヤシ、フィカスなどから選択できます。</p>
       </div>
       <div class="step">
-        <div class="step-title"><span class="num">3</span>配置調整</div>
-        <p>植物はドラッグ、サイズはスライダーで調整します。</p>
+        <div class="step-title"><span class="num">3</span>配置・サイズ調整</div>
+        <p>植物をドラッグし、サイズをスライダーで調整します。</p>
       </div>
       <div class="step">
-        <div class="step-title"><span class="num">4</span>診断</div>
-        <p>見た目・サイズ・光環境を簡易判定します。</p>
+        <div class="step-title"><span class="num">4</span>診断結果</div>
+        <p>見た目相性・サイズ感・光環境との相性を簡易判定します。</p>
       </div>
     </section>
 
@@ -484,7 +436,7 @@
         <div class="stage" id="stage">
           <div class="placeholder" id="placeholder">
             ここに部屋写真が表示されます<br>
-            写真は切り取りなしの全体表示が初期設定です
+            下のボタンから写真をアップロードしてください
           </div>
           <img id="roomImage" alt="部屋写真">
           <img id="plantLayer" alt="選択した植物">
@@ -499,20 +451,7 @@
           </div>
 
           <div>
-            <label>写真表示</label>
-            <select id="photoFitSelect">
-              <option value="contain" selected>全体表示：切り取らない</option>
-              <option value="cover">画面いっぱい：一部切り取り</option>
-            </select>
-          </div>
-
-          <div>
-            <label>写真ズーム：<span id="photoZoomLabel">100</span>%</label>
-            <input type="range" id="photoZoomRange" min="70" max="160" value="100">
-          </div>
-
-          <div>
-            <label>光環境</label>
+            <label>光環境の自己申告</label>
             <select id="lightSelect">
               <option value="bright">明るい：窓際・日中かなり明るい</option>
               <option value="medium" selected>中程度：レース越し・部屋は明るい</option>
@@ -526,26 +465,38 @@
           </div>
 
           <div>
-            <label>操作</label>
-            <button id="resetBtn" class="secondary">配置リセット</button>
+            <label>位置調整</label>
+            <div class="controls">
+              <span></span>
+              <button class="small secondary" id="upBtn">↑</button>
+              <span></span>
+              <button class="small secondary" id="leftBtn">←</button>
+              <button class="small secondary" id="downBtn">↓</button>
+              <button class="small secondary" id="rightBtn">→</button>
+            </div>
           </div>
+        </div>
+
+        <div class="toolbar">
+          <button id="resetBtn" class="secondary">配置をリセット</button>
+          <button id="diagnoseBtn">診断を更新</button>
         </div>
       </div>
 
       <div class="card">
-        <h2>植物を選ぶ</h2>
+        <h2 style="margin-top:0;">植物を選ぶ</h2>
         <div class="plant-grid" id="plantGrid"></div>
       </div>
     </section>
 
     <section class="summary">
       <div class="card">
-        <h2>おすすめの植物</h2>
+        <h2 style="margin-top:0;">おすすめの植物</h2>
         <div class="recommend-cards" id="recommendCards"></div>
       </div>
 
       <div class="card result">
-        <h2>診断結果</h2>
+        <h2 style="margin:0;">診断結果</h2>
         <div class="score-box">
           <div class="score-row">
             <span>見た目の相性</span>
@@ -565,102 +516,77 @@
           </div>
         </div>
 
-        <div class="recommend" id="commentBox">
-          この場所は中程度の明るさがあり、選択した植物の生育に比較的向いています。
+        <div class="score-box">
+          <h3 style="margin:0 0 8px;">選択中の植物</h3>
+          <div class="score-row">
+            <span>植物名</span>
+            <strong id="selectedPlantName">モンステラ</strong>
+          </div>
+          <div class="score-row">
+            <span>樹高目安</span>
+            <strong id="selectedPlantHeight">50〜150cm</strong>
+          </div>
+          <div class="score-row">
+            <span>成長タイプ</span>
+            <strong id="selectedPlantGrowth">↔ 横に広がる</strong>
+          </div>
         </div>
 
-        <button id="purchaseBtn">購入候補を検索</button>
-        <button class="secondary" id="saveBtn">診断メモをコピー</button>
+        <div class="recommend" id="commentBox">
+          この場所は中程度の明るさがあり、選択した植物の生育に比較的向いています。葉の大きさと空間のバランスも良く、部屋のアクセントになります。
+        </div>
+
+        <div class="score-box">
+          <h3 style="margin:0 0 8px;">光環境サマリー</h3>
+          <div class="light-list">
+            <div class="light-item"><span>明るさ</span><strong id="lightSummary">中〜明るい</strong></div>
+            <div class="light-item"><span>直射日光</span><strong id="sunSummary">午前中はあり</strong></div>
+            <div class="light-item"><span>育成リスク</span><strong id="riskSummary">低〜中</strong></div>
+          </div>
+        </div>
+
+        <div class="cta">
+          <button id="purchaseBtn">購入ページを見る</button>
+          <button class="secondary" id="saveBtn">診断メモをコピー</button>
+        </div>
       </div>
     </section>
   </main>
 
   <footer>
-    ※このMVPは検証用です。植物画像は仮素材です。本番では利用許諾済みの透明背景PNG写真に差し替えてください。
+    ※このMVPは検証用です。画像合成は簡易表示であり、実際のサイズ・影・奥行きを完全に再現するものではありません。
   </footer>
 
   <script>
-    /*
-      植物画像を写真PNGに差し替える場合：
-      1. GitHubに assets フォルダを作る
-      2. monstera.png / kentia.png / ficus.png / pothos.png を入れる
-      3. 各 plant の img を "assets/monstera.png" のように変更する
-    */
-
-    const fallbackSvg = {
-      monstera: "data:image/svg+xml;utf8," + encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
-          <defs>
-            <linearGradient id="leaf" x1="0" x2="1">
-              <stop offset="0%" stop-color="#2f7d3b"/>
-              <stop offset="100%" stop-color="#0f4f25"/>
-            </linearGradient>
-          </defs>
-          <rect x="90" y="288" width="80" height="45" rx="12" fill="#e8dfcf" stroke="#a99b83" stroke-width="4"/>
-          <path d="M118 290 C118 220, 105 165, 72 105" stroke="#315f2f" stroke-width="8" fill="none"/>
-          <path d="M140 290 C140 210, 160 155, 198 95" stroke="#315f2f" stroke-width="8" fill="none"/>
-          <path d="M130 290 C130 205, 128 148, 126 74" stroke="#315f2f" stroke-width="8" fill="none"/>
-          <ellipse cx="70" cy="105" rx="52" ry="38" transform="rotate(-28 70 105)" fill="url(#leaf)"/>
-          <ellipse cx="196" cy="95" rx="58" ry="40" transform="rotate(24 196 95)" fill="url(#leaf)"/>
-          <ellipse cx="124" cy="72" rx="56" ry="42" transform="rotate(-6 124 72)" fill="url(#leaf)"/>
-          <ellipse cx="94" cy="170" rx="55" ry="39" transform="rotate(18 94 170)" fill="url(#leaf)"/>
-          <ellipse cx="172" cy="176" rx="60" ry="42" transform="rotate(-18 172 176)" fill="url(#leaf)"/>
-        </svg>
-      `),
-      kentia: "data:image/svg+xml;utf8," + encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
-          <rect x="92" y="292" width="76" height="44" rx="12" fill="#efe7d8" stroke="#b9a98f" stroke-width="4"/>
-          <path d="M130 292 C126 220, 118 150, 75 55" stroke="#3a6b32" stroke-width="7" fill="none"/>
-          <path d="M130 292 C132 220, 135 145, 130 38" stroke="#3a6b32" stroke-width="7" fill="none"/>
-          <path d="M130 292 C136 222, 152 150, 206 62" stroke="#3a6b32" stroke-width="7" fill="none"/>
-          <g stroke="#1e7031" stroke-width="7" stroke-linecap="round">
-            <path d="M76 58 C42 68, 25 89, 10 117"/>
-            <path d="M78 60 C112 73, 128 96, 145 126"/>
-            <path d="M130 40 C91 47, 67 70, 44 102"/>
-            <path d="M132 41 C171 54, 196 82, 218 119"/>
-            <path d="M205 63 C172 77, 152 101, 134 134"/>
-            <path d="M207 64 C232 81, 247 104, 254 132"/>
-          </g>
-        </svg>
-      `),
-      ficus: "data:image/svg+xml;utf8," + encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
-          <rect x="92" y="292" width="76" height="44" rx="12" fill="#ded6c7" stroke="#a89c8a" stroke-width="4"/>
-          <path d="M130 292 C128 210, 135 142, 150 58" stroke="#7a5632" stroke-width="9" fill="none"/>
-          <path d="M138 175 C105 152, 78 125, 55 85" stroke="#7a5632" stroke-width="5" fill="none"/>
-          <path d="M142 146 C174 128, 196 101, 217 68" stroke="#7a5632" stroke-width="5" fill="none"/>
-          <ellipse cx="55" cy="82" rx="38" ry="44" transform="rotate(-35 55 82)" fill="#3e8a3f"/>
-          <ellipse cx="218" cy="66" rx="42" ry="48" transform="rotate(35 218 66)" fill="#3f8d42"/>
-          <ellipse cx="151" cy="58" rx="43" ry="49" transform="rotate(8 151 58)" fill="#4a9b48"/>
-          <ellipse cx="106" cy="150" rx="36" ry="42" transform="rotate(-24 106 150)" fill="#3e8a3f"/>
-          <ellipse cx="178" cy="140" rx="36" ry="42" transform="rotate(24 178 140)" fill="#4a9b48"/>
-        </svg>
-      `),
-      pothos: "data:image/svg+xml;utf8," + encodeURIComponent(`
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
-          <rect x="90" y="292" width="80" height="44" rx="12" fill="#efe7d8" stroke="#b9a98f" stroke-width="4"/>
-          <path d="M130 292 C124 235, 105 190, 72 150" stroke="#3a6b32" stroke-width="6" fill="none"/>
-          <path d="M132 292 C138 232, 158 190, 198 150" stroke="#3a6b32" stroke-width="6" fill="none"/>
-          <path d="M130 292 C130 230, 130 178, 130 120" stroke="#3a6b32" stroke-width="6" fill="none"/>
-          <g fill="#4e9b44">
-            <ellipse cx="72" cy="148" rx="32" ry="26" transform="rotate(-30 72 148)"/>
-            <ellipse cx="198" cy="148" rx="32" ry="26" transform="rotate(30 198 148)"/>
-            <ellipse cx="130" cy="118" rx="34" ry="28" transform="rotate(-5 130 118)"/>
-            <ellipse cx="102" cy="205" rx="30" ry="24" transform="rotate(20 102 205)"/>
-            <ellipse cx="164" cy="205" rx="30" ry="24" transform="rotate(-20 164 205)"/>
-          </g>
-        </svg>
-      `)
-    };
-
     const plants = [
       {
         id: "monstera",
         name: "モンステラ",
         emoji: "🌿",
         note: "大きな葉で主役感",
-        img: "assets/monstera.png",
-        fallback: fallbackSvg.monstera,
+        height: "50〜150cm",
+        growth: "横に広がる",
+        growthIcon: "↔",
+        img: "data:image/svg+xml;utf8," + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
+            <defs>
+              <linearGradient id="leaf" x1="0" x2="1">
+                <stop offset="0%" stop-color="#2f7d3b"/>
+                <stop offset="100%" stop-color="#0f4f25"/>
+              </linearGradient>
+            </defs>
+            <rect x="90" y="288" width="80" height="45" rx="12" fill="#e8dfcf" stroke="#a99b83" stroke-width="4"/>
+            <path d="M118 290 C118 220, 105 165, 72 105" stroke="#315f2f" stroke-width="8" fill="none"/>
+            <path d="M140 290 C140 210, 160 155, 198 95" stroke="#315f2f" stroke-width="8" fill="none"/>
+            <path d="M130 290 C130 205, 128 148, 126 74" stroke="#315f2f" stroke-width="8" fill="none"/>
+            <ellipse cx="70" cy="105" rx="52" ry="38" transform="rotate(-28 70 105)" fill="url(#leaf)"/>
+            <ellipse cx="196" cy="95" rx="58" ry="40" transform="rotate(24 196 95)" fill="url(#leaf)"/>
+            <ellipse cx="124" cy="72" rx="56" ry="42" transform="rotate(-6 124 72)" fill="url(#leaf)"/>
+            <ellipse cx="94" cy="170" rx="55" ry="39" transform="rotate(18 94 170)" fill="url(#leaf)"/>
+            <ellipse cx="172" cy="176" rx="60" ry="42" transform="rotate(-18 172 176)" fill="url(#leaf)"/>
+            <path d="M50 95 L83 111 M178 82 L215 101 M107 62 L140 78 M75 164 L111 176 M151 167 L190 181" stroke="#d9efd6" stroke-width="5" opacity=".7"/>
+          </svg>
+        `),
         lightNeed: "medium",
         visual: 4.4
       },
@@ -668,19 +594,44 @@
         id: "kentia",
         name: "ケンチャヤシ",
         emoji: "🌴",
-        note: "ホテルライク",
-        img: "assets/kentia.png",
-        fallback: fallbackSvg.kentia,
+        note: "ホテルライク・上品",
+        img: "data:image/svg+xml;utf8," + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
+            <rect x="92" y="292" width="76" height="44" rx="12" fill="#efe7d8" stroke="#b9a98f" stroke-width="4"/>
+            <path d="M130 292 C126 220, 118 150, 75 55" stroke="#3a6b32" stroke-width="7" fill="none"/>
+            <path d="M130 292 C132 220, 135 145, 130 38" stroke="#3a6b32" stroke-width="7" fill="none"/>
+            <path d="M130 292 C136 222, 152 150, 206 62" stroke="#3a6b32" stroke-width="7" fill="none"/>
+            <g stroke="#1e7031" stroke-width="7" stroke-linecap="round">
+              <path d="M76 58 C42 68, 25 89, 10 117"/>
+              <path d="M78 60 C112 73, 128 96, 145 126"/>
+              <path d="M130 40 C91 47, 67 70, 44 102"/>
+              <path d="M132 41 C171 54, 196 82, 218 119"/>
+              <path d="M205 63 C172 77, 152 101, 134 134"/>
+              <path d="M207 64 C232 81, 247 104, 254 132"/>
+            </g>
+          </svg>
+        `),
         lightNeed: "medium",
         visual: 4.2
       },
       {
         id: "ficus",
-        name: "フィカス",
+        name: "フィカス・ウンベラータ",
         emoji: "🪴",
-        note: "明るい部屋向き",
-        img: "assets/ficus.png",
-        fallback: fallbackSvg.ficus,
+        note: "明るい部屋に映える",
+        img: "data:image/svg+xml;utf8," + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
+            <rect x="92" y="292" width="76" height="44" rx="12" fill="#ded6c7" stroke="#a89c8a" stroke-width="4"/>
+            <path d="M130 292 C128 210, 135 142, 150 58" stroke="#7a5632" stroke-width="9" fill="none"/>
+            <path d="M138 175 C105 152, 78 125, 55 85" stroke="#7a5632" stroke-width="5" fill="none"/>
+            <path d="M142 146 C174 128, 196 101, 217 68" stroke="#7a5632" stroke-width="5" fill="none"/>
+            <ellipse cx="55" cy="82" rx="38" ry="44" transform="rotate(-35 55 82)" fill="#3e8a3f"/>
+            <ellipse cx="218" cy="66" rx="42" ry="48" transform="rotate(35 218 66)" fill="#3f8d42"/>
+            <ellipse cx="151" cy="58" rx="43" ry="49" transform="rotate(8 151 58)" fill="#4a9b48"/>
+            <ellipse cx="106" cy="150" rx="36" ry="42" transform="rotate(-24 106 150)" fill="#3e8a3f"/>
+            <ellipse cx="178" cy="140" rx="36" ry="42" transform="rotate(24 178 140)" fill="#4a9b48"/>
+          </svg>
+        `),
         lightNeed: "bright",
         visual: 4.1
       },
@@ -688,20 +639,75 @@
         id: "pothos",
         name: "ポトス",
         emoji: "🍃",
-        note: "初心者向き",
-        img: "assets/pothos.png",
-        fallback: fallbackSvg.pothos,
+        note: "初心者向け・小さめ",
+        img: "data:image/svg+xml;utf8," + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
+            <rect x="90" y="292" width="80" height="44" rx="12" fill="#efe7d8" stroke="#b9a98f" stroke-width="4"/>
+            <path d="M130 292 C124 235, 105 190, 72 150" stroke="#3a6b32" stroke-width="6" fill="none"/>
+            <path d="M132 292 C138 232, 158 190, 198 150" stroke="#3a6b32" stroke-width="6" fill="none"/>
+            <path d="M130 292 C130 230, 130 178, 130 120" stroke="#3a6b32" stroke-width="6" fill="none"/>
+            <g fill="#4e9b44">
+              <ellipse cx="72" cy="148" rx="32" ry="26" transform="rotate(-30 72 148)"/>
+              <ellipse cx="198" cy="148" rx="32" ry="26" transform="rotate(30 198 148)"/>
+              <ellipse cx="130" cy="118" rx="34" ry="28" transform="rotate(-5 130 118)"/>
+              <ellipse cx="102" cy="205" rx="30" ry="24" transform="rotate(20 102 205)"/>
+              <ellipse cx="164" cy="205" rx="30" ry="24" transform="rotate(-20 164 205)"/>
+            </g>
+            <g fill="#d9e98c" opacity=".7">
+              <ellipse cx="86" cy="145" rx="8" ry="4"/>
+              <ellipse cx="188" cy="148" rx="8" ry="4"/>
+              <ellipse cx="121" cy="112" rx="8" ry="4"/>
+            </g>
+          </svg>
+        `),
         lightNeed: "low",
         visual: 3.8
+      },
+      {
+        id: "sansevieria",
+        name: "サンスベリア",
+        emoji: "🌱",
+        note: "省スペース・丈夫",
+        img: "data:image/svg+xml;utf8," + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
+            <rect x="91" y="292" width="78" height="44" rx="12" fill="#eee0cb" stroke="#a99578" stroke-width="4"/>
+            <path d="M130 292 C102 210, 104 130, 122 40 C156 132, 158 214, 130 292Z" fill="#2e7a3e"/>
+            <path d="M105 292 C76 230, 72 160, 90 82 C121 160, 125 232, 105 292Z" fill="#347f42"/>
+            <path d="M155 292 C184 225, 188 152, 169 70 C137 158, 135 228, 155 292Z" fill="#2f7040"/>
+            <path d="M130 60 C130 140, 130 220, 130 292 M92 105 C100 170, 105 235, 105 292 M168 95 C158 170, 154 235, 155 292" stroke="#d8e78a" stroke-width="4" opacity=".7"/>
+          </svg>
+        `),
+        lightNeed: "low",
+        visual: 3.9
+      },
+      {
+        id: "anthurium",
+        name: "アンスリウム",
+        emoji: "🌺",
+        note: "花色がアクセント",
+        img: "data:image/svg+xml;utf8," + encodeURIComponent(`
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
+            <rect x="92" y="292" width="76" height="44" rx="12" fill="#e8dfcf" stroke="#a99b83" stroke-width="4"/>
+            <path d="M130 292 C120 230, 98 176, 62 118" stroke="#3c7036" stroke-width="7" fill="none"/>
+            <path d="M132 292 C142 230, 165 176, 205 118" stroke="#3c7036" stroke-width="7" fill="none"/>
+            <path d="M130 292 C130 230, 130 175, 130 104" stroke="#3c7036" stroke-width="7" fill="none"/>
+            <ellipse cx="65" cy="117" rx="40" ry="32" transform="rotate(-25 65 117)" fill="#3f8a42"/>
+            <ellipse cx="204" cy="117" rx="40" ry="32" transform="rotate(25 204 117)" fill="#3f8a42"/>
+            <ellipse cx="130" cy="104" rx="42" ry="34" transform="rotate(0 130 104)" fill="#3f8a42"/>
+            <path d="M155 78 C178 52, 222 63, 218 104 C214 144, 170 151, 150 124 C132 146, 91 135, 95 96 C100 58, 135 55, 155 78Z" fill="#c7343e"/>
+            <path d="M156 83 C164 97, 162 112, 152 126" stroke="#f1d36b" stroke-width="7" stroke-linecap="round"/>
+          </svg>
+        `),
+        lightNeed: "medium",
+        visual: 4.0
       }
     ];
 
     const state = {
       selected: plants[0],
       x: 55,
-      y: 50,
-      size: 80,
-      photoZoom: 100
+      y: 42,
+      size: 80
     };
 
     const stage = document.getElementById("stage");
@@ -713,16 +719,6 @@
     const sizeRange = document.getElementById("sizeRange");
     const sizeLabel = document.getElementById("sizeLabel");
     const lightSelect = document.getElementById("lightSelect");
-    const photoFitSelect = document.getElementById("photoFitSelect");
-    const photoZoomRange = document.getElementById("photoZoomRange");
-    const photoZoomLabel = document.getElementById("photoZoomLabel");
-
-    function setPlantImage(plant) {
-      plantLayer.src = plant.img;
-      plantLayer.onerror = () => {
-        plantLayer.src = plant.fallback;
-      };
-    }
 
     function renderPlantOptions() {
       plantGrid.innerHTML = "";
@@ -730,19 +726,24 @@
         const div = document.createElement("div");
         div.className = "plant-option" + (plant.id === state.selected.id ? " active" : "");
         div.innerHTML = `
-          <div class="thumb">${plant.emoji}</div>
+          <div class="thumb">
+            <img src="${plant.img}" alt="${plant.name}" onerror="this.style.display='none'; this.parentElement.textContent='${plant.emoji}'">
+          </div>
           <div>
             <div class="plant-name">${plant.name}</div>
             <div class="plant-note">${plant.note}</div>
+            <div class="plant-meta">
+              <div><strong>高さ</strong>：${plant.height}</div>
+              <div><strong>成長</strong>：${plant.growthIcon} ${plant.growth}</div>
+            </div>
           </div>
           <div class="badge">${plant.id === state.selected.id ? "✓" : ""}</div>
         `;
         div.addEventListener("click", () => {
           state.selected = plant;
-          setPlantImage(plant);
+          plantLayer.src = plant.img;
           plantLayer.style.display = "block";
           renderPlantOptions();
-          renderRecommendCards();
           updateDiagnosis();
         });
         plantGrid.appendChild(div);
@@ -750,36 +751,27 @@
     }
 
     function renderRecommendCards() {
-      const cards = plants
-        .slice()
-        .sort((a, b) => (b.id === state.selected.id) - (a.id === state.selected.id))
-        .slice(0, 3)
-        .map((plant, i) => {
-          const score = Math.max(62, Math.round(88 - i * 7 + (plant.id === state.selected.id ? 4 : 0)));
-          return `
-            <div class="mini-card">
-              <div class="thumb">${plant.emoji}</div>
-              <div>
-                <strong>${plant.name}</strong>
-                <span>おすすめ度 ${score}%</span>
-              </div>
+      const cards = plants.slice(0, 3).map((plant, i) => {
+        const score = Math.max(62, Math.round(88 - i * 7 + (plant.id === state.selected.id ? 4 : 0)));
+        return `
+          <div class="mini-card">
+            <div class="thumb">${plant.emoji}</div>
+            <div>
+              <strong>${plant.name}</strong>
+              <span>おすすめ度 ${score}%</span>
             </div>
-          `;
-        }).join("");
+          </div>
+        `;
+      }).join("");
       document.getElementById("recommendCards").innerHTML = cards;
     }
 
-    function applyStyles() {
+    function applyPlantStyle() {
       plantLayer.style.left = state.x + "%";
       plantLayer.style.top = state.y + "%";
       plantLayer.style.width = (state.size * 0.35) + "%";
       sizeLabel.textContent = state.size;
       sizeRange.value = state.size;
-
-      roomImage.style.objectFit = photoFitSelect.value;
-      roomImage.style.transform = `scale(${state.photoZoom / 100})`;
-      photoZoomLabel.textContent = state.photoZoom;
-      photoZoomRange.value = state.photoZoom;
     }
 
     function lightScore(light, plantNeed) {
@@ -827,9 +819,19 @@
       if (lScore < 60) lightText = "注意";
       else if (lScore < 78) lightText = "やや注意";
       else if (lScore >= 88) lightText = "とても良い";
-
       document.getElementById("lightFit").textContent = lightText;
       document.getElementById("totalScore").textContent = total + " / 100";
+      document.getElementById("selectedPlantName").textContent = state.selected.name;
+      document.getElementById("selectedPlantHeight").textContent = state.selected.height;
+      document.getElementById("selectedPlantGrowth").textContent = `${state.selected.growthIcon} ${state.selected.growth}`;
+
+      const lightLabel = light === "bright" ? "明るい" : light === "medium" ? "中〜明るい" : "暗め";
+      const risk = lScore >= 85 ? "低い" : lScore >= 70 ? "低〜中" : "中〜高";
+      const sun = light === "bright" ? "直射・強い光あり" : light === "medium" ? "レース越し程度" : "少ない";
+
+      document.getElementById("lightSummary").textContent = lightLabel;
+      document.getElementById("sunSummary").textContent = sun;
+      document.getElementById("riskSummary").textContent = risk;
 
       let comment = "";
       if (lScore >= 85) {
@@ -839,6 +841,8 @@
       } else {
         comment = `${state.selected.name}にはやや暗い可能性があります。同じ雰囲気なら、ポトスやサンスベリアなど耐陰性のある植物も候補に入れると安全です。`;
       }
+
+      comment += ` 樹高目安は${state.selected.height}で、成長タイプは「${state.selected.growth}」です。`;
 
       if (state.size > 115) {
         comment += " 現在のサイズはやや大きめなので、実際には一回り小さい鉢から試すと失敗しにくいです。";
@@ -862,32 +866,34 @@
       reader.readAsDataURL(file);
     });
 
-    photoFitSelect.addEventListener("change", () => {
-      applyStyles();
-    });
-
-    photoZoomRange.addEventListener("input", () => {
-      state.photoZoom = Number(photoZoomRange.value);
-      applyStyles();
-    });
-
     sizeRange.addEventListener("input", () => {
       state.size = Number(sizeRange.value);
-      applyStyles();
+      applyPlantStyle();
       updateDiagnosis();
     });
 
     lightSelect.addEventListener("change", updateDiagnosis);
 
+    function nudge(dx, dy) {
+      state.x = Math.max(5, Math.min(95, state.x + dx));
+      state.y = Math.max(5, Math.min(95, state.y + dy));
+      applyPlantStyle();
+    }
+
+    document.getElementById("upBtn").addEventListener("click", () => nudge(0, -3));
+    document.getElementById("downBtn").addEventListener("click", () => nudge(0, 3));
+    document.getElementById("leftBtn").addEventListener("click", () => nudge(-3, 0));
+    document.getElementById("rightBtn").addEventListener("click", () => nudge(3, 0));
+
     document.getElementById("resetBtn").addEventListener("click", () => {
       state.x = 55;
-      state.y = 50;
+      state.y = 42;
       state.size = 80;
-      state.photoZoom = 100;
-      photoFitSelect.value = "contain";
-      applyStyles();
+      applyPlantStyle();
       updateDiagnosis();
     });
+
+    document.getElementById("diagnoseBtn").addEventListener("click", updateDiagnosis);
 
     document.getElementById("purchaseBtn").addEventListener("click", () => {
       const q = encodeURIComponent(state.selected.name + " 観葉植物 通販");
@@ -897,8 +903,7 @@
     document.getElementById("saveBtn").addEventListener("click", async () => {
       const memo = `【観葉植物お試し配置 診断メモ】
 選択植物：${state.selected.name}
-植物サイズ：${state.size}%
-写真表示：${photoFitSelect.options[photoFitSelect.selectedIndex].text}
+サイズ：${state.size}%
 光環境：${lightSelect.options[lightSelect.selectedIndex].text}
 おすすめ度：${document.getElementById("totalScore").textContent}
 コメント：${document.getElementById("commentBox").textContent}`;
@@ -924,17 +929,17 @@
       state.y = ((e.clientY - rect.top) / rect.height) * 100;
       state.x = Math.max(5, Math.min(95, state.x));
       state.y = Math.max(5, Math.min(95, state.y));
-      applyStyles();
+      applyPlantStyle();
     });
 
     plantLayer.addEventListener("pointerup", () => {
       dragging = false;
     });
 
-    setPlantImage(state.selected);
+    plantLayer.src = state.selected.img;
     renderPlantOptions();
     renderRecommendCards();
-    applyStyles();
+    applyPlantStyle();
     updateDiagnosis();
   </script>
 </body>
