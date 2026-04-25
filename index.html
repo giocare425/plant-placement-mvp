@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>観葉植物お試し配置サービス MVP v3.2</title>
+  <title>観葉植物お試し配置サービス MVP v3.3</title>
   <style>
     :root {
       --green: #2f6f3e;
@@ -404,6 +404,7 @@
   </style>
 </head>
 <body>
+  <!-- MVP version: v3.3 image-first flow -->
   <header>
     <div class="header-inner">
       <h1>観葉植物お試し配置サービス</h1>
@@ -414,24 +415,29 @@
   <main>
     <section class="steps">
       <div class="step">
-        <div class="step-title"><span class="num">1</span>部屋写真をアップロード</div>
-        <p>窓・床・家具が写る写真を使うと、配置イメージが分かりやすくなります。</p>
+        <div class="step-title"><span class="num">1</span>植物を選ぶ</div>
+        <p>見た目・高さ・成長タイプから、置いてみたい植物を先に選びます。</p>
       </div>
       <div class="step">
-        <div class="step-title"><span class="num">2</span>植物を選ぶ</div>
-        <p>モンステラ、ケンチャヤシ、フィカスなどから選択できます。</p>
+        <div class="step-title"><span class="num">2</span>部屋写真</div>
+        <p>写真全体表示・拡大表示を切り替えできます。</p>
       </div>
       <div class="step">
         <div class="step-title"><span class="num">3</span>配置・サイズ調整</div>
-        <p>植物をドラッグし、サイズをスライダーで調整します。</p>
+        <p>選んだ植物画像をドラッグし、サイズをスライダーで調整します。</p>
       </div>
       <div class="step">
         <div class="step-title"><span class="num">4</span>診断結果</div>
-        <p>見た目相性・サイズ感・光環境との相性を簡易判定します。</p>
+        <p>見た目・サイズ・光環境を簡易判定します。</p>
       </div>
     </section>
 
     <section class="workspace">
+      <div class="card">
+        <h2 style="margin-top:0;">植物を選ぶ</h2>
+        <div class="plant-grid" id="plantGrid"></div>
+      </div>
+
       <div class="card">
         <div class="stage" id="stage">
           <div class="placeholder" id="placeholder">
@@ -481,11 +487,6 @@
           <button id="resetBtn" class="secondary">配置をリセット</button>
           <button id="diagnoseBtn">診断を更新</button>
         </div>
-      </div>
-
-      <div class="card">
-        <h2 style="margin-top:0;">植物を選ぶ</h2>
-        <div class="plant-grid" id="plantGrid"></div>
       </div>
     </section>
 
@@ -697,7 +698,7 @@
         div.className = "plant-option" + (plant.id === state.selected.id ? " active" : "");
         div.innerHTML = `
           <div class="thumb">
-            <img src="${plant.img}" alt="${plant.name}" onerror="this.style.display='none'; this.parentElement.textContent='${plant.emoji}'">
+            <img src="${plant.img}" alt="${plant.name}">
           </div>
           <div>
             <div class="plant-name">${plant.name}</div>
@@ -725,7 +726,7 @@
         const score = Math.max(62, Math.round(88 - i * 7 + (plant.id === state.selected.id ? 4 : 0)));
         return `
           <div class="mini-card">
-            <div class="thumb">${plant.emoji}</div>
+            <div class="thumb"><img src="${plant.img}" alt="${plant.name}"></div>
             <div>
               <strong>${plant.name}</strong>
               <span>おすすめ度 ${score}%</span>
