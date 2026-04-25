@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>観葉植物お試し配置サービス MVP v3.4</title>
+  <title>観葉植物お試し配置サービス MVP v3.5</title>
   <style>
     :root {
       --green: #2f6f3e;
@@ -262,17 +262,34 @@
     }
 
     .thumb img {
-      width: 100%;
-      height: 100%;
+      width: 88%;
+      height: 88%;
       object-fit: contain;
+      object-position: center bottom;
       display: block;
-      max-width: 100%;
-      max-height: 100%;
+      max-width: 88%;
+      max-height: 88%;
     }
 
     .plant-name {
       font-weight: 800;
     }
+
+    .plant-copy-main {
+      font-weight: 900;
+      font-size: 15px;
+      line-height: 1.25;
+      color: var(--text);
+    }
+
+    .plant-copy-sub {
+      font-weight: 700;
+      font-size: 12px;
+      line-height: 1.25;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
 
     .plant-note {
       font-size: 12px;
@@ -417,7 +434,7 @@
   </style>
 </head>
 <body>
-  <!-- MVP version: v3.4 thumbnail-fit-fix -->
+  <!-- MVP version: v3.5 thumbnail-full-plant-and-copy-hierarchy -->
   <header>
     <div class="header-inner">
       <h1>観葉植物お試し配置サービス</h1>
@@ -649,8 +666,8 @@ const plants = [
             <img src="${plant.img}" alt="${plant.name}">
           </div>
           <div>
-            <div class="plant-name">${plant.name}</div>
-            <div class="plant-note">${plant.note}</div>
+            <div class="plant-copy-main">${plant.note}</div>
+            <div class="plant-copy-sub">植物名：${plant.name}</div>
             <div class="plant-meta">
               <div><strong>高さ</strong>：${plant.height}</div>
               <div><strong>成長</strong>：${plant.growthIcon} ${plant.growth}</div>
@@ -676,7 +693,8 @@ const plants = [
           <div class="mini-card">
             <div class="thumb"><img src="${plant.img}" alt="${plant.name}"></div>
             <div>
-              <strong>${plant.name}</strong>
+              <div class="plant-copy-main">${plant.note}</div>
+              <div class="plant-copy-sub">植物名：${plant.name}</div>
               <span>おすすめ度 ${score}%</span>
             </div>
           </div>
