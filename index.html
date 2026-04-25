@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>観葉植物お試し配置サービス MVP</title>
+  <title>観葉植物お試し配置サービス MVP v3.2</title>
   <style>
     :root {
       --green: #2f6f3e;
@@ -595,6 +595,9 @@
         name: "ケンチャヤシ",
         emoji: "🌴",
         note: "ホテルライク・上品",
+        height: "100〜200cm",
+        growth: "上に伸びる",
+        growthIcon: "↑",
         img: "data:image/svg+xml;utf8," + encodeURIComponent(`
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
             <rect x="92" y="292" width="76" height="44" rx="12" fill="#efe7d8" stroke="#b9a98f" stroke-width="4"/>
@@ -619,6 +622,9 @@
         name: "フィカス・ウンベラータ",
         emoji: "🪴",
         note: "明るい部屋に映える",
+        height: "80〜180cm",
+        growth: "上に伸びる",
+        growthIcon: "↑",
         img: "data:image/svg+xml;utf8," + encodeURIComponent(`
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
             <rect x="92" y="292" width="76" height="44" rx="12" fill="#ded6c7" stroke="#a89c8a" stroke-width="4"/>
@@ -640,6 +646,9 @@
         name: "ポトス",
         emoji: "🍃",
         note: "初心者向け・小さめ",
+        height: "20〜100cm",
+        growth: "垂れる・ツル性",
+        growthIcon: "↓",
         img: "data:image/svg+xml;utf8," + encodeURIComponent(`
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
             <rect x="90" y="292" width="80" height="44" rx="12" fill="#efe7d8" stroke="#b9a98f" stroke-width="4"/>
@@ -662,46 +671,7 @@
         `),
         lightNeed: "low",
         visual: 3.8
-      },
-      {
-        id: "sansevieria",
-        name: "サンスベリア",
-        emoji: "🌱",
-        note: "省スペース・丈夫",
-        img: "data:image/svg+xml;utf8," + encodeURIComponent(`
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
-            <rect x="91" y="292" width="78" height="44" rx="12" fill="#eee0cb" stroke="#a99578" stroke-width="4"/>
-            <path d="M130 292 C102 210, 104 130, 122 40 C156 132, 158 214, 130 292Z" fill="#2e7a3e"/>
-            <path d="M105 292 C76 230, 72 160, 90 82 C121 160, 125 232, 105 292Z" fill="#347f42"/>
-            <path d="M155 292 C184 225, 188 152, 169 70 C137 158, 135 228, 155 292Z" fill="#2f7040"/>
-            <path d="M130 60 C130 140, 130 220, 130 292 M92 105 C100 170, 105 235, 105 292 M168 95 C158 170, 154 235, 155 292" stroke="#d8e78a" stroke-width="4" opacity=".7"/>
-          </svg>
-        `),
-        lightNeed: "low",
-        visual: 3.9
-      },
-      {
-        id: "anthurium",
-        name: "アンスリウム",
-        emoji: "🌺",
-        note: "花色がアクセント",
-        img: "data:image/svg+xml;utf8," + encodeURIComponent(`
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 360">
-            <rect x="92" y="292" width="76" height="44" rx="12" fill="#e8dfcf" stroke="#a99b83" stroke-width="4"/>
-            <path d="M130 292 C120 230, 98 176, 62 118" stroke="#3c7036" stroke-width="7" fill="none"/>
-            <path d="M132 292 C142 230, 165 176, 205 118" stroke="#3c7036" stroke-width="7" fill="none"/>
-            <path d="M130 292 C130 230, 130 175, 130 104" stroke="#3c7036" stroke-width="7" fill="none"/>
-            <ellipse cx="65" cy="117" rx="40" ry="32" transform="rotate(-25 65 117)" fill="#3f8a42"/>
-            <ellipse cx="204" cy="117" rx="40" ry="32" transform="rotate(25 204 117)" fill="#3f8a42"/>
-            <ellipse cx="130" cy="104" rx="42" ry="34" transform="rotate(0 130 104)" fill="#3f8a42"/>
-            <path d="M155 78 C178 52, 222 63, 218 104 C214 144, 170 151, 150 124 C132 146, 91 135, 95 96 C100 58, 135 55, 155 78Z" fill="#c7343e"/>
-            <path d="M156 83 C164 97, 162 112, 152 126" stroke="#f1d36b" stroke-width="7" stroke-linecap="round"/>
-          </svg>
-        `),
-        lightNeed: "medium",
-        visual: 4.0
-      }
-    ];
+      }];
 
     const state = {
       selected: plants[0],
